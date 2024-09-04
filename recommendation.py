@@ -32,3 +32,8 @@ def recommend_movie(title):
     movie_indices = [i[0] for i in sim_scores]
     
     return movies['title'].iloc[movie_indices].tolist()  # Return a list instead of Series
+def get_suggestions(query):
+    # Filter movies based on the query for suggestions
+    suggestions = movies[movies['title'].str.contains(query, case=False, na=False)]
+    suggestions_list = suggestions['title'].tolist()
+    return suggestions_list
